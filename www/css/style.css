@@ -1,1 +1,16 @@
 /* Empty. Add your own CSS if you like */
+
+#title:hover{
+  background-color: #b2b2b2;
+}
+
+
+.energized2 {
+  background-color: #ffc900;
+  color: white;
+  /*text-align: center;*/
+}
+.energized1{
+  color: #886aea;
+}
+

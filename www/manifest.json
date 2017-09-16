@@ -1,7 +1,7 @@
 
 {
-  "name": "My Ionic App",
-  "short_name": "My Ionic App",
+  "name": "Apt Imde Info Service",
+  "short_name": "Apt Imde Info Service",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{

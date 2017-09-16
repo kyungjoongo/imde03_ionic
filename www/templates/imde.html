@@ -1,0 +1,69 @@
+<ion-view title="임대분양정보" class="">
+
+  <ion-content class="has-header">
+
+    <div class="row header"  >
+      <div class="col col-40" style="text-align: right">
+        <select name="srchbrtcCode" id="srchbrtcCode" data-inline="true" data-theme="a" ng-model="srchbrtcCode"
+                ng-change="getGooList(srchbrtcCode)">
+          <option value="">전체</option>
+          <option value="11">서울특별시</option>
+          <option value="26">부산광역시</option>
+          <option value="27">대구광역시</option>
+          <option value="28">인천광역시</option>
+          <option value="29">광주광역시</option>
+          <option value="30">대전광역시</option>
+          <option value="31">울산광역시</option>
+          <option value="36">세종특별자치시</option>
+          <option value="41">경기도</option>
+          <option value="42">강원도</option>
+          <option value="43">충청북도</option>
+          <option value="44">충청남도</option>
+          <option value="45">전라북도</option>
+          <option value="46">전라남도</option>
+          <option value="47">경상북도</option>
+          <option value="48">경상남도</option>
+          <option value="50">제주특별자치도</option>
+        </select>
+      </div>
+
+      <div class="col col-30 ">
+        <!--{{selectedGoo}}-->
+        <select name="gooCode" ng-model="selectedGoo" ng-init="selectedGoo == option[0]" >
+          <option  ng-repeat="gooOne in gooList" value="{{gooOne.code}}"  >
+            {{gooOne.value}}
+          </option>
+        </select>
+      </div>
+      <div class="col col-30  ">
+        <button type="button" ng-click="updateList(srchbrtcCode, selectedGoo)">검색</button>
+
+      </div>
+
+    </div>
+
+
+
+
+    <div class="row header" style="background-color: #AAAAAA">
+      <div class="col col-10">#</div>
+      <div class="col col-70">지역</div>
+      <div class="col col-70">공고명</div>
+      <div class="col col-20">완료여부</div>
+    </div>
+
+    <div id="title" ng-repeat="item in items" class="row" ng-repeat="data in items | searchText">
+      <div class="col col-10">{{ item.rn }}</div>
+      <div class="col col-10">{{ item.brtcCodeNm }}</div>
+      <div class="col col-10">{{ item.pblancId }}</div>
+      <!--<div class="col" ng-show="false">{{ item.guidanceCn}}</div>-->
+      <div class="col col-70" ng-click="openInAppBrowser(item.pblancId)">{{ item.pblancNm }}</div>
+      <div ng-class="(item.prgrStts=='모집중') ? 'col col-20 energized1' : 'col col-20'">{{item.prgrStts}}</div>
+
+    </div>
+    <!--아이템이 있는 경우에만 스크롤링 함수를 호출한다.sdlfksdlfklsdkf-->
+    <ion-infinite-scroll ng-if="itemsAvailable" on-infinite="loadMore()" distance="10%"></ion-infinite-scroll>
+  </ion-content>
+
+
+</ion-view>
