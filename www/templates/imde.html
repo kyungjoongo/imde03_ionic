@@ -1,4 +1,4 @@
-<ion-view title="임대분양정보" class="">
+<ion-view title="임대주택정보" class="">
 
   <ion-content class="has-header">
 
@@ -29,10 +29,14 @@
 
       <div class="col col-30 ">
         <!--{{selectedGoo}}-->
-        <select name="gooCode" ng-model="selectedGoo" ng-init="selectedGoo == option[0]" >
+     <!--   <select  ng-model="selectedGoo" ng-init="selectedGoo == option[0]" >
           <option  ng-repeat="gooOne in gooList" value="{{gooOne.code}}"  >
             {{gooOne.value}}
           </option>
+        </select>-->
+
+        <select ng-model="selectedGoo"  ng-options="gooOne.code as gooOne.value for gooOne in gooList track by gooOne.code">
+          <option value="">--- 구선택 ---</option>
         </select>
       </div>
       <div class="col col-30  ">
@@ -55,7 +59,7 @@
     <div id="title" ng-repeat="item in items" class="row" ng-repeat="data in items | searchText">
       <div class="col col-10">{{ item.rn }}</div>
       <div class="col col-10">{{ item.brtcCodeNm }}</div>
-      <div class="col col-10">{{ item.pblancId }}</div>
+      <!--<div class="col col-10">{{ item.pblancId }}</div>-->
       <!--<div class="col" ng-show="false">{{ item.guidanceCn}}</div>-->
       <div class="col col-70" ng-click="openInAppBrowser(item.pblancId)">{{ item.pblancNm }}</div>
       <div ng-class="(item.prgrStts=='모집중') ? 'col col-20 energized1' : 'col col-20'">{{item.prgrStts}}</div>

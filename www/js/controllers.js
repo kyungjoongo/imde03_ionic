@@ -41,7 +41,7 @@ angular.module('imde3.controllers', [])
     };
   })
 
-  .controller('ImdeCtrl', function ($scope, ImdeService, $state, $ionicLoading) {
+  .controller('ImdeCtrl', function ($scope, ImdeService, $state, $ionicLoading ) {
 
     $scope.show = function () {
       $ionicLoading.show({
@@ -61,18 +61,25 @@ angular.module('imde3.controllers', [])
     $scope.pageIndex = 1;
 
 
+
+
     $scope.items = [];
 
     $scope.selectedSi = "";
 
+
+    /**
+     * ##################################
+     * loadMore
+     * ##################################
+     */
     $scope.loadMore = function () {
-
-
       ImdeService.getAll($scope.pageIndex, $scope.selectedSi).then(function (response) { //2. so you can use .then()
 
         if (response.data.resultList.length == 0 ) {
-
           $scope.itemsAvailable = false;
+
+          alert('더 이상 데이터가 없습니다.');
         }else{
           $scope.items2 = response.data.resultList;
 
@@ -89,11 +96,20 @@ angular.module('imde3.controllers', [])
       });
     };
 
+
+    /**
+     * 코도바 인앱 브라우져..
+     * @param pblancId
+     */
     $scope.openInAppBrowser = function (pblancId) {
 
-/*      alert( pblancId);*/
+      window.open('https://m.myhome.go.kr/hws/portal/sch/selectRsdtRcritNtcView.do#detailPage?pblancId=' + pblancId, '_selft');
 
-      window.open('https://m.myhome.go.kr/hws/portal/sch/selectRsdtRcritNtcView.do#detailPage?pblancId=' + pblancId, '_blank');
+      /*$cordovaInAppBrowser.open('https://m.myhome.go.kr/hws/portal/sch/selectRsdtRcritNtcView.do#detailPage?pblancId=' + pblancId, '_blank', options)
+        .then(function(event) {
+        })
+        .catch(function(event) {
+        });*/
     };
 
     $scope.openCordovaWebView = function (pblancId) {
@@ -185,20 +201,4 @@ angular.module('imde3.controllers', [])
   })
 
 
-  .controller('PlaylistsCtrl', function ($scope) {
-    $scope.playlists = [
-      {title: 'Reggae', id: 1},
-      {title: 'Chill', id: 2},
-      {title: 'Dubstep', id: 3},
-      {title: 'Indie', id: 4},
-      {title: 'Rap', id: 5},
-      {title: 'Cowbell', id: 6}
-    ];
-  })
-
-  .controller('PlaylistCtrl', function ($scope, $stateParams) {
-
-    console.log($stateParams.title);
-
-    $scope.title = $stateParams.title;
-  });
+;
